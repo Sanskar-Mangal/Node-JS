@@ -1,0 +1,59 @@
+filter function node js : use,array mai se value filter
+
+node js single threaded hai yha multiple threaded hai : single threaded hai ek time pr ek command ko run kr thi hai
+
+agr node module file delete ho jye toh kese lyenge : npm install
+
+
+module ko github pr push nhi kr skh the size jada hai uss ke liye :
+create file=> .gitignore file mai likh na hai  /node_modules
+
+package or module same ho the hai but name alg hai
+
+Node js is async language yha sync language : async language 
+sync means : line by line execute hona agr bech mai problem ayi toh phle solve hogi uss ke baad next line execute hogi.
+----------
+async means : agr bech mai problem ayi toh wait nhi kregi next execute ho jyegi
+run first script
+run second script(complex data) : it will not wait to finish 2nd script
+run third script
+continue
+
+
+process ek object hai : console.log(process.argv) -> 2 input phle se ho the hai
+---------------------------
+Asynchronous and synchronous
+
+synchronous : in synchronous operation taks are performed one at a time.
+Asynchronous : in asynchronous,second task do not wait to finish first task.
+
+agr kuch change kr the hai toh phir se server run krna ho tha hai
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

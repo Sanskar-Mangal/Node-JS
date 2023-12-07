@@ -1,0 +1,454 @@
+what is node js?
+
+node is not a programming language
+this is a server environment
+node can can connect with database/javascript not connect database
+code and syntax is very similar to javascript
+but not exactly same
+node js free open source
+node js use chrome v8 engine to execute code
+
+----------------------------------------------------------------------------------------------------
+
+
+why do we use nodejs?
+
+node js mostly uses for api
+so we can connect the same database with web app, mobile app
+node js is super fast for api's
+with node js and javascript you can become full stack developer
+
+------------------------------------------------------------------------------------------------------
+
+major topics:
+
+what is node js
+how its work
+install and run
+make basic api
+use with express.js (framework node js use api)
+ui with node - ui event,forms,web pages etc
+node js event
+middleware
+major package
+connect with db
+make major api
+api validation
+
+----------------------------------------------------------------------------------------------------------
+
+what developer make with NODE JS?
+developers make API with Node JS
+so we can connect server with client
+
+----------------------------------------------------------------------------------------------------------
+
+node -v
+npm -v
+npm init create package.json file
+npm i colors package install
+
+--------------------------------IMP
+
+script with command line : node
+make folder and file
+
+--------------------------------------------------------------------------------------------------------------
+client and server sides :
+-------------------------
+
+core module : kuch feature phle se pre defined ho the hai like database se connect ke liye,console.log,buffer,HTTP,fs(file system),console.log(__dirname),API Call.
+
+global module : ese module ho the hai jin ko import krne ki jarurt nhi ho thi like console.log.
+
+non-global module : fs ko import krna hoga phle 
+EXAMPLE:
+--------
+        fs ke all function ko import krna	const fs=require('fs');
+						fs.writeFileSync("hello.txt","hello world")
+						
+	only ek function ko import krna		const fs=require('fs').writeFileSync;
+						fs("hello.txt","hello world")
+
+	jaruri nhi const ka name fs ho		const gs=require('fs');
+						gs.writeFileSync("hello.txt","hello world")
+
+------------------------------------------CREATE A BASIC SERVER-----------------------------------------------
+
+const http = require('http');
+
+
+http.createServer((req,resp)=>{   //function as a parameter le tha hai create server
+
+    resp.write("<h1>hello this is first server create</h1>");
+    resp.write("By : Sanskar Mangal");
+    resp.end();
+
+}).listen(4500);  
+
+http module handle the request and response
+
+--------------------------------------------------------------------------------------------------------------
+IMPORTANT FILE PACKAGE.JSON: ALL PACKAGE DETAILS SHOW[project details rk tha hai]
+
+npm init : node package manager
+package.json:coding related details store like version command,package(validation),databaseconnection(mongodb)
+npm i colors (package install)
+npm i simple-node-logger
+
+------------------------------
+
+package-lock.json: yhe package ki details rkh tha hai
+
+------------------------------Install package and use [external package]
+
+npm i colors (package install),chalk package
+
+const color=requied('colors')
+console.log("hello".red);
+console.log("package.json".red,green,bgBlue);
+
+-----------IMP-------------Nodemon || Time saving module
+
+npm i nodemon -g : g means globally kisi bii project mai use kr skh the
+
+agr ek code likha hai uss ko edit kr the hai toh phir se run krna ho tha hai agr nhi krna toh nodemon use kr skh the hai time saving hai.[contineous run]
+
+---------------------------------------------MAKE A SIMPLE API------------------------------------------------
+
+const http=require('http');
+const data=require('./data');
+http.createServer((req,resp) =>{
+    resp.writeHead(200,{'Content-Type' : 'application\json'});
+    resp.write(JSON.stringify(data));
+    resp.end();
+}).listen(3000);
+
+
+
+const data=[
+    {name:'sanskar mangal',email:'sanskar@gmail.com'},
+    {name:'Keshav singh',email:'keshav@gmail.com'},
+    {name:'adarsh mangal',email:'adrsh@gmail.com'},
+    {name:'udit mangal',email:'udit@gmail.com'}
+]
+module.exports=data;
+
+---------------------------------------------EXPRESS----------------------------------------------------------
+
+PHP : Laravel
+java : hibernate and spring
+node js : express framework
+
+npm install express
+
+const express= require('express');
+const app =express();  //execute krna ho tha hai
+
+app.get('',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+     res.send("Hello, this is home page");               //'' means home page
+});
+
+app.listen(5000);
+
+
+app.get('/about',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    res.send("Hello, this is about page");               //'' means home page
+});
+
+app.get('/contact',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    res.send("Hello, this is contact page");               //'' means home page
+});
+
+Response <- request
+server   -> client
+
+------------------------------------------------ROUTING-------------------------------------------------------
+
+const express= require('express');
+const app =express();  //execute krna ho tha hai
+
+app.get('',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    console.log("Data sent by browser",req.query)   //url mai : /?name=sanskar request
+     res.send("Hello, this is home page"+req.query.name); 
+     res.send("Hello, this is home page");               //'' means home page
+});
+
+app.listen(5000);
+
+
+app.get('/about',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    res.send("Hello, this is about page");               //'' means home page
+});
+
+app.get('/contact',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    res.send("Hello, this is contact page");               //'' means home page
+});
+
+--------------------------------------------Render HTML and JSON----------------------------------------------
+
+const express= require('express');
+const app =express();  //execute krna ho tha hai
+
+app.get('',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+    console.log("Data sent by browser")   //url mai : /?name=sanskar request 
+
+     res.send("<h1>Hello, this is home page</h1>");               //'' means home page
+});
+
+app.get('/about',(req,res)=>{  //get ek method hai yhe rout provide kr tha hai [post bii provide kr tha hai]
+     res.send(`
+        <input type="text" placeholder="user name" />
+        <button>Click Me</button>
+     `);
+
+     res.send("<h1>Hello, this is home page</h1>");               //'' means home page
+});
+
+app.listen(5000);
+
+-----------------------------
+
+const express= require('express');
+const app =express();  //execute krna ho tha hai
+
+app.get('',(req,res)=>{ 
+    console.log("Data sent by browser")   
+
+     res.send("<h1>Hello, this is home page</h1>");               
+});
+
+// app.get('/about',(req,res)=>{  
+//      res.send(`
+//         <input type="text" placeholder="user name" />
+//         <button>Click Me</button>
+//      `);
+              
+// });
+
+app.get('/help',(req,res)=>{  
+    res.send({
+        name:'sanskar',
+        email:'sanskar@gmail.com'
+    });
+});
+
+app.listen(5000);
+
+----------------------------------------one page to another page----------------------------------------------
+
+const express= require('express');
+const app =express();  //execute krna ho tha hai
+
+app.get('',(req,res)=>{ 
+    console.log("Data sent by browser")   
+
+     res.send(`
+     <h1>Hello, this is home page</h1>
+     <a href="/about">Go to about page</a>
+     `);               
+});
+
+app.get('/about',(req,res)=>{  
+     res.send(`
+        <input type="text" placeholder="user name" />
+        <button>Click Me</button>
+        <a href="/">Go to Home page</a>
+     `);
+              
+});
+
+app.listen(5000);
+
+------------------------------------------------RENDER PAGE---------------------------------------------------
+
+const express=require('express');
+const path=require('path');   //path de tha hai yhe file ka 
+const app=express();
+
+
+const publicpath=path.join(__dirname,'public');
+//console.log(__dirname);
+
+app.use(express.static(publicpath));
+
+app.listen(4000);
+
+--------------------------------------Remove extension to url-------------------------------------------------          
+
+const express=require('express');
+const path=require('path');
+const app=express();
+
+const publicpath=path.join(__dirname,'public');
+
+//Remove extension to url
+app.get('',(_,resp)=>{
+    resp.sendFile(`${publicpath}/index.html`);
+})
+
+app.get('/service',(_,resp)=>{ //name kuch bii rkh sk the hai
+    resp.sendFile(`${publicpath}/about.html`);
+})
+
+
+app.get('*',(_,resp)=>{
+    resp.sendFile(`${publicpath}/index.html`);
+})
+
+
+app.listen(4000);
+
+------------------------------------------------OS INFORMATION------------------------------------------------
+
+const os=require('os');
+
+console.log(os.arch());
+
+console.log(os.freemem()/(1024*1024*1024));
+
+console.log(os.totalmem()/(1024*1024*1024));
+
+console.log(os.hostname());
+
+console.log(os.platform());
+
+console.log(os.userInfo());
+
+------------------------------------Node JS connect with MySQL------------------------------------------------
+
+npm i mysql
+
+const mysql= require("mysql");
+
+const con=mysql.createConnection({
+    host:'localhost',
+    user: "root",
+    password :"",
+    database :"demo"
+});
+
+
+//CHECK CONNECTION
+// con.connect((err)=>{
+//     if(err){
+//         console.warn("error");
+//     }
+//     else{
+//         console.warn("connected");
+//     }
+// });
+
+con.query("select * from demodata",(err,result)=>{
+    console.warn("result",result)
+})
+
+-----------------------------------------Node js GET API------------------------------------------------------
+create config file
+
+const mysql= require("mysql");
+
+const con=mysql.createConnection({
+    host:'localhost',
+    user: "root",
+    password :"",
+    database :"demo"
+});
+
+
+//CHECK CONNECTION CONNECT OR NOT
+// con.connect((err)=>{
+//     if(err){
+//         console.warn("error");
+//     }
+//     else{
+//         console.warn("connected");
+//     }
+// });
+
+module.exports=con;
+
+get.js:
+-------
+
+const express=require('express');
+const con=require("./config");
+const app = express();
+
+app.get("/",(res,rep)=>{
+    // rep.send("route done");
+    con.query("select * from demodata",(err,result)=>{
+        if (err){
+            rep.send("error");
+        }
+        else{
+            rep.send(result);
+        }
+    })
+});
+
+app.listen(3000);
+
+---------------------------------------------POST-------------------------------------------------------------
+
+ app.post("/",(res,rep)=>{
+   const data = {id:2,fname:"Adarsh"};
+   con.query('Insert into demodata SET ?',data,(error,result,fields)=>{
+    if(error) error;
+    rep.send(result);
+   })
+});
+
+--------------------------------------------PUT---------------------------------------------------------------
+
+app.put("/",(res,rep)=>{
+   const data=["Demo",2]
+   con.query("update demodata SET fname = ? where id = ?",data,(err,result,fields)=>{
+    if(err) error;
+    rep.send(result);
+   })
+  // rep.send("updated");
+ });
+
+-------------------------------------DELETE------------------------------------------------------------------
+
+ //DELETE
+ app.delete("/:id",(res,rep)=>{
+    con.query("Delete from demodata where id =" +req.params.id,(err,result,fields)=>{
+     if(err) throw error;
+     rep.send(result);
+    })
+   // rep.send(res.params.id)
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
